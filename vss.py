@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import win32com.client
 
 
@@ -76,7 +77,7 @@ class ShadowCopy(object):
         sc = self.wmi.get("Win32_ShadowCopy")
         createparams = sc.Methods_("Create").InParameters.SpawnInstance_()
         createparams.Properties_[1].value = "{0}:\\".format(drive_letter)
-        results = wmi.ExecMethod_("Create", createparams)
+        results = sc.ExecMethod_("Create", createparams)
         return results.Properties_[1].value
 
     def __vss_delete(self, shadow_id):
